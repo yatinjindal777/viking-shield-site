@@ -16,6 +16,7 @@
 <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/scenes.js" defer></script>
 <script src="assets/js/site.js" defer></script>
 </head>
 <body>
@@ -33,8 +34,8 @@
 <div class="mobile-menu" id="mobile-menu"><a class="m-link" href="index.html" aria-current=page><small>01</small>Home</a><a class="m-link" href="services.html"><small>02</small>Services</a><a class="m-link" href="industries.html"><small>03</small>Industries</a><a class="m-link" href="why-viking.html"><small>04</small>Why Viking</a><a class="m-link" href="careers.html"><small>05</small>Careers</a><a class="m-link" href="contact.html"><small>06</small>Contact</a><a class="btn btn--primary" href="contact.html#book">Book immediate service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 <main id="main">
 
-<section class="hero">
-  <div class="hero__media"><video src="assets/video/city.mp4" autoplay muted loop playsinline preload="auto" poster="assets/img/city.webp" aria-hidden="true" class=""></video></div>
+<section class="hero" data-live-host>
+  <div class="hero__media"><div class="live" data-live="city" data-hint><img class="live__poster" src="assets/img/city.webp" alt="" loading="eager"></div></div>
   <div class="wrap hero__grid">
     <div>
       <span class="eyebrow" data-reveal><span class="dot"></span>Toronto &amp; across Ontario</span>
@@ -43,15 +44,14 @@
       <div class="actions" data-reveal style="--d:500ms"><a class="btn btn--primary" href="#book">Book immediate service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--ghost" href="services.html">Explore services</a></div>
     </div>
     <aside class="hero-card" data-reveal style="--d:650ms" aria-label="Quick booking">
-      <div class="hero-card__top"><span class="live"><span class="dot"></span>Dispatch</span><span class="mono" data-clock></span></div>
+      <div class="hero-card__top"><span class="status"><span class="dot"></span>Dispatch</span><span class="mono" data-clock></span></div>
       <h2>Need a guard tonight?</h2>
       <p>Pick a post and we'll call you back to confirm coverage.</p>
       <div class="svc-pick"><a href="contact.html?service=concierge#book"><svg class="icon i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18v3H3zM5 13v7M19 13v7"/><circle cx="12" cy="5" r="2.2"/></svg>Concierge</a><a href="contact.html?service=patrol#book"><svg class="icon i-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16V11l2-5h10l2 5v5M3 16h18v3H3z"/><circle cx="7.5" cy="13.5" r=".6"/><circle cx="16.5" cy="13.5" r=".6"/><path d="M10 3h4"/></svg>Mobile patrol</a><a href="contact.html?service=site#book"><svg class="icon i-crane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4M6 4h14M6 8l5-4M14 4v6M3 21h8"/><path d="M12.5 10h3v3h-3z"/></svg>Site</a><a href="contact.html?service=retail#book"><svg class="icon i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Retail</a></div>
       <a class="btn btn--primary" href="tel:+14160000000"><svg class="icon i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.8 4.6-2.3 1.4a11 11 0 0 0 6 6l1.4-2.3L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"/></svg> Call (416) 000-0000</a>
     </aside>
   </div>
-  <span class="scroll-cue" aria-hidden="true"></span>
-</section>
+  </section>
 
 <section class="section--tight">
   <div class="wrap">
@@ -74,13 +74,13 @@
       <div><span class="eyebrow" data-reveal>Services</span><h2 class="h-lg" data-split="silver">Four posts. One standard.</h2></div>
       <p class="lede" data-reveal>Every post runs from the same written SOPs and a site policy built for your property, so a guard on day one works the way a guard on day three hundred does.</p>
     </div>
-    <div class="bento" data-stagger><a class="vcard" href="services.html#concierge"><video data-src="assets/video/concierge.mp4" muted loop playsinline preload="none" poster="assets/img/concierge.webp" aria-hidden="true" class=""></video>
+    <div class="bento" data-stagger><a class="vcard" data-live-host href="services.html#concierge"><div class="live" data-live="concierge" data-res="lo" data-noclick><img class="live__poster" src="assets/img/concierge.webp" alt="" loading="lazy"></div>
 <span class="vcard__num"><i></i>01 / CONCIERGE</span><span class="vcard__go"><svg class="icon i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-<h3>Concierge security</h3><p>Front-desk presence, visitor and contractor logs, package handling and lobby checks.</p><span class="link">Explore service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="vcard" href="services.html#patrol"><video data-src="assets/video/patrol.mp4" muted loop playsinline preload="none" poster="assets/img/patrol.webp" aria-hidden="true" class=""></video>
+<h3>Concierge security</h3><p>Front-desk presence, visitor and contractor logs, package handling and lobby checks.</p><span class="link">Explore service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="vcard" data-live-host href="services.html#patrol"><div class="live" data-live="patrol" data-res="lo" data-noclick><img class="live__poster" src="assets/img/patrol.webp" alt="" loading="lazy"></div>
 <span class="vcard__num"><i></i>02 / MOBILE</span><span class="vcard__go"><svg class="icon i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-<h3>Mobile patrol</h3><p>Marked patrols on a set route and schedule, lock-ups, alarm response and incident reports.</p><span class="link">Explore service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="vcard" href="services.html#site"><video data-src="assets/video/site.mp4" muted loop playsinline preload="none" poster="assets/img/site.webp" aria-hidden="true" class=""></video>
+<h3>Mobile patrol</h3><p>Marked patrols on a set route and schedule, lock-ups, alarm response and incident reports.</p><span class="link">Explore service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="vcard" data-live-host href="services.html#site"><div class="live" data-live="site" data-res="lo" data-noclick><img class="live__poster" src="assets/img/site.webp" alt="" loading="lazy"></div>
 <span class="vcard__num"><i></i>03 / SITE</span><span class="vcard__go"><svg class="icon i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-<h3>Site security</h3><p>Construction and vacant sites: gate control, perimeter checks and overnight watch.</p><span class="link">Explore service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="vcard" href="services.html#retail"><video data-src="assets/video/retail.mp4" muted loop playsinline preload="none" poster="assets/img/retail.webp" aria-hidden="true" class=""></video>
+<h3>Site security</h3><p>Construction and vacant sites: gate control, perimeter checks and overnight watch.</p><span class="link">Explore service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="vcard" data-live-host href="services.html#retail"><div class="live" data-live="retail" data-res="lo" data-noclick><img class="live__poster" src="assets/img/retail.webp" alt="" loading="lazy"></div>
 <span class="vcard__num"><i></i>04 / RETAIL</span><span class="vcard__go"><svg class="icon i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
 <h3>Retail security</h3><p>Visible loss prevention for stores, pharmacies and malls, with calm de-escalation.</p><span class="link">Explore service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
   </div>
@@ -101,7 +101,7 @@
       </ol>
     </div>
     <figure class="panel proc__sticky" style="margin:0" data-reveal>
-      <div class="panel__head"><span class="panel__dots"><i></i><i></i><i></i></span><span>Shift report · Sample</span><span class="live"><span class="dot"></span>Live</span></div>
+      <div class="panel__head"><span class="panel__dots"><i></i><i></i><i></i></span><span>Shift report · Sample</span><span class="status"><span class="dot"></span>Live</span></div>
       <div class="panel__body">
         <ol class="report">
           <li><time>22:00</time><p><b>Shift start.</b> Guard on post, site policy and handover notes acknowledged.</p></li>
@@ -118,7 +118,7 @@
 
 <section class="section--tight">
   <div class="wrap">
-    <div class="reel" data-reveal="scale"><video data-src="assets/video/patrol.mp4" muted loop playsinline preload="none" poster="assets/img/patrol.webp" aria-hidden="true" class=""></video>
+    <div class="reel" data-live-host data-reveal="scale"><div class="live" data-live="patrol" data-hint><img class="live__poster" src="assets/img/patrol.webp" alt="" loading="lazy"></div>
       <button class="reel__ctrl" type="button" aria-label="Pause video"><svg class="icon i-pause i-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><svg class="icon i-play i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
       <div class="reel__copy"><span class="eyebrow"><span class="dot"></span>On patrol</span><h2 class="h-lg" style="margin-top:18px" data-split="silver">On shift across Ontario, day and night.</h2></div>
     </div>
@@ -146,7 +146,7 @@
       <p class="lede" data-reveal>We hire licensed guards for concierge, patrol, site and retail posts across Ontario, and back them with clear SOPs and an operations team that picks up the phone.</p>
       <div class="actions" data-reveal><a class="btn btn--primary" href="careers.html#apply">Apply now <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--ghost" href="careers.html">See open roles</a></div>
     </div>
-    <div class="media-card" data-reveal="scale"><video data-src="assets/video/site.mp4" muted loop playsinline preload="none" poster="assets/img/site.webp" aria-hidden="true" class=""></video><span class="tag-osd"><i></i>Site watch</span></div>
+    <div class="media-card" data-live-host data-reveal="scale"><div class="live" data-live="site" data-hint><img class="live__poster" src="assets/img/site.webp" alt="" loading="lazy"></div><span class="tag-osd"><i></i>Site watch</span></div>
   </div>
 </section>
 
@@ -170,8 +170,8 @@
     </div>
   </div></div>
 </section>
-<section class="section--tight"><div class="wrap"><div class="cta" data-reveal="scale">
-<video data-src="assets/video/city.mp4" muted loop playsinline preload="none" poster="assets/img/city.webp" aria-hidden="true" class=""></video>
+<section class="section--tight"><div class="wrap"><div class="cta" data-live-host data-reveal="scale">
+<div class="live" data-live="city"><img class="live__poster" src="assets/img/city.webp" alt="" loading="lazy"></div>
 <span class="eyebrow"><span class="dot"></span>Dispatch is taking bookings</span>
 <h2 class="h-lg" style="margin-top:24px" data-split="silver">Need a guard on site tonight?</h2>
 <p class="lede">Tell dispatch where and when. We'll call back to confirm coverage, hours and rate.</p>
@@ -188,7 +188,7 @@
       <div><h2>Reach dispatch</h2><ul><li><a href="tel:+14160000000">(416) 000-0000</a></li><li><a href="https://wa.me/14160000000" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:info@example.com">info@example.com</a></li><li><a href="contact.html">Toronto, Ontario</a></li></ul></div>
     </div>
     <div class="footer__word" aria-hidden="true">VIKING SHIELD</div>
-    <div class="footer__base"><span>&copy; <span data-year>2026</span> Viking Shield Security. All rights reserved.</span><span class="live"><span class="dot"></span>Always proactive · <span data-clock></span></span></div>
+    <div class="footer__base"><span>&copy; <span data-year>2026</span> Viking Shield Security. All rights reserved.</span><span class="status"><span class="dot"></span>Always proactive · <span data-clock></span></span></div>
   </div>
 </footer>
 </body>

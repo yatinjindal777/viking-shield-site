@@ -4,6 +4,7 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const root = document.documentElement;
+  var lio = new IntersectionObserver(es => es.forEach(e => { const L = lives.find(l => l.el === e.target); if (L) L.visible = e.isIntersecting; }), { rootMargin: '100px' });
 
   /* header: scrolled state, hide on scroll down */
   const header = $('.header'), bar = $('.progress');
@@ -66,6 +67,7 @@
   $$('[data-reveal], .split, .checks').forEach(el => io.observe(el));
   $$('[data-stagger]').forEach(g => [...g.children].forEach((c, i) => { c.setAttribute('data-reveal', ''); c.style.setProperty('--d', i * 90 + 'ms'); io.observe(c); }));
   $$('.checks li').forEach((li, i) => li.style.setProperty('--i', i % 6));
+  requestAnimationFrame(() => $$('[data-reveal], .split').forEach(el => { if (el.getBoundingClientRect().top < innerHeight) { el.classList.add('in'); io.unobserve(el); } }));
 
   /* count up */
   const cio = new IntersectionObserver(es => es.forEach(e => {
@@ -85,6 +87,60 @@
     else v.pause();
   }), { rootMargin: '200px' });
   $$('video[data-src], video[autoplay]').forEach(v => { v.muted = true; v.playsInline = true; vio.observe(v); });
+
+
+  /* ---------- live interactive scenes ---------- */
+  const HINTS = {
+    city: ['aim the searchlight', 'for lightning'],
+    concierge: ['look around the lobby', 'to switch the lobby lights'],
+    patrol: ['steer the patrol car', 'to switch the light bar · hold to speed up'],
+    site: ['aim the flashlight', 'to switch the floodlights'],
+    retail: ['track shoppers on CAM 04', 'to toggle tracking'],
+  };
+  const lives = [];
+  if (window.renderScene && !reduce) $$('[data-live]').forEach(el => {
+    const name = el.dataset.live, host = el.closest('[data-live-host]') || el, clickable = !el.hasAttribute('data-noclick');
+    const cv = document.createElement('canvas'); cv.className = 'live__canvas'; cv.setAttribute('aria-hidden', 'true');
+    const lo = el.dataset.res === 'lo' || innerWidth < 760, k = lo ? .5 : .75;
+    cv.width = 1280 * k; cv.height = 720 * k; el.append(cv);
+    const L = { el, host, name, ctx: cv.getContext('2d'), k, t: Math.random(), visible: false, drawn: false,
+      inp: { x: .5, y: .45, on: true, flash: 0, live: true }, tgt: { x: .5, y: .45 }, last: -1e9, speed: 1, hold: false };
+    if (el.hasAttribute('data-hint')) {
+      const h = HINTS[name], verb = fine ? 'Move' : 'Drag', tap = fine ? 'Click' : 'Tap';
+      const chip = document.createElement('span'); chip.className = 'live__hint';
+      chip.innerHTML = `<span class="live__pulse"></span>${verb} to ${h[0]}${clickable ? ` · ${tap} ${h[1]}` : ''}`;
+      host.append(chip);
+    }
+    const pos = e => { const r = el.getBoundingClientRect(); L.tgt.x = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)); L.tgt.y = Math.max(0, Math.min(1, (e.clientY - r.top) / r.height)); L.last = performance.now(); host.classList.add('is-live'); };
+    host.addEventListener('pointermove', pos, { passive: true });
+    host.addEventListener('pointerdown', e => { pos(e); if (name === 'patrol' && !e.target.closest('a,button,input,select,textarea,label,aside')) L.hold = true; });
+    addEventListener('pointerup', () => L.hold = false);
+    host.addEventListener('pointerleave', () => L.hold = false);
+    if (clickable) host.addEventListener('click', e => {
+      if (e.target.closest('a,button,input,select,textarea,label,aside,form')) return;
+      if (name === 'city') L.inp.flash = 1; else L.inp.on = !L.inp.on;
+      host.classList.add('is-live');
+    });
+    lives.push(L); lio.observe(el);
+  });
+  let lastFrame = 0;
+  const liveLoop = now => {
+    requestAnimationFrame(liveLoop);
+    if (now - lastFrame < 31) return;
+    const dt = Math.min(100, now - lastFrame); lastFrame = now;
+    for (const L of lives) {
+      if (!L.visible || L.el.closest('.paused')) continue;
+      if (now - L.last > 2600) { const s = now / 1000 + L.t * 10; L.tgt.x = .5 + .32 * Math.sin(s * .45); L.tgt.y = .42 + .16 * Math.sin(s * .8); }
+      L.inp.x += (L.tgt.x - L.inp.x) * .09; L.inp.y += (L.tgt.y - L.inp.y) * .09;
+      L.inp.flash *= .86;
+      L.speed += ((L.hold ? 3 : 1) - L.speed) * .08;
+      L.t = (L.t + dt / 8000 * L.speed) % 1;
+      L.ctx.setTransform(L.k, 0, 0, L.k, 0, 0);
+      window.renderScene(L.ctx, L.name, L.t, L.inp);
+      if (!L.drawn) { L.drawn = true; L.el.classList.add('is-drawn'); }
+    }
+  };
+  if (lives.length) requestAnimationFrame(liveLoop);
 
   /* hero spotlight follows the cursor */
   const hero = $('.hero');
@@ -129,8 +185,7 @@
   }
 
   /* showreel play/pause */
-  const rc = $('.reel__ctrl');
-  if (rc) rc.addEventListener('click', () => { const v = $('video', reel), p = reel.classList.toggle('paused'); p ? v.pause() : v.play(); rc.setAttribute('aria-label', p ? 'Play video' : 'Pause video'); });
+  $$('.reel__ctrl').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); const r = b.closest('.reel'), p = r.classList.toggle('paused'); b.setAttribute('aria-label', p ? 'Play scene' : 'Pause scene'); }));
 
   /* coverage search */
   const q = $('#city-q');

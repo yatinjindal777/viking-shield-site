@@ -16,6 +16,7 @@
 <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/scenes.js" defer></script>
 <script src="assets/js/site.js" defer></script>
 </head>
 <body>
@@ -32,7 +33,7 @@
 </header>
 <div class="mobile-menu" id="mobile-menu"><a class="m-link" href="index.html"><small>01</small>Home</a><a class="m-link" href="services.html"><small>02</small>Services</a><a class="m-link" href="industries.html"><small>03</small>Industries</a><a class="m-link" href="why-viking.html"><small>04</small>Why Viking</a><a class="m-link" href="careers.html"><small>05</small>Careers</a><a class="m-link" href="contact.html"><small>06</small>Contact</a><a class="btn btn--primary" href="contact.html#book">Book immediate service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 <main id="main">
-<section class="notice"><video src="assets/video/concierge.mp4" autoplay muted loop playsinline preload="auto" poster="assets/img/concierge.webp" aria-hidden="true" class=""></video><div class="wrap">
+<section class="notice" data-live-host><div class="live" data-live="concierge"><img class="live__poster" src="assets/img/concierge.webp" alt="" loading="eager"></div><div class="wrap">
 <span class="eyebrow" data-reveal><span class="dot"></span>Received · <span data-clock></span></span>
 <h1 class="h-xl" data-split="silver">Request received.</h1>
 <p class="lede" data-reveal>Thanks. Dispatch has your details and will call you back. If it's urgent, call <a class="link" href="tel:+14160000000">(416) 000-0000</a>.</p>
@@ -48,7 +49,7 @@
       <div><h2>Reach dispatch</h2><ul><li><a href="tel:+14160000000">(416) 000-0000</a></li><li><a href="https://wa.me/14160000000" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:info@example.com">info@example.com</a></li><li><a href="contact.html">Toronto, Ontario</a></li></ul></div>
     </div>
     <div class="footer__word" aria-hidden="true">VIKING SHIELD</div>
-    <div class="footer__base"><span>&copy; <span data-year>2026</span> Viking Shield Security. All rights reserved.</span><span class="live"><span class="dot"></span>Always proactive · <span data-clock></span></span></div>
+    <div class="footer__base"><span>&copy; <span data-year>2026</span> Viking Shield Security. All rights reserved.</span><span class="status"><span class="dot"></span>Always proactive · <span data-clock></span></span></div>
   </div>
 </footer>
 </body>
