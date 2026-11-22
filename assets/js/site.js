@@ -108,7 +108,8 @@
     if (el.hasAttribute('data-hint')) {
       const h = HINTS[name], verb = fine ? 'Move' : 'Drag', tap = fine ? 'Click' : 'Tap';
       const chip = document.createElement('span'); chip.className = 'live__hint';
-      chip.innerHTML = `<span class="live__pulse"></span>${verb} to ${h[0]}${clickable ? ` · ${tap} ${h[1]}` : ''}`;
+      const M = { city: 'Drag: searchlight · Tap: lightning', concierge: 'Drag to look · Tap: lights', patrol: 'Drag to steer · Tap: lights', site: 'Drag: flashlight · Tap: floodlights', retail: 'Drag to track · Tap: tracking' };
+      chip.innerHTML = `<span class="live__pulse"></span>${fine ? `${verb} to ${h[0]}${clickable ? ` · ${tap} ${h[1]}` : ''}` : M[name]}`;
       host.append(chip);
     }
     const pos = e => { const r = el.getBoundingClientRect(); L.tgt.x = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)); L.tgt.y = Math.max(0, Math.min(1, (e.clientY - r.top) / r.height)); L.last = performance.now(); host.classList.add('is-live'); };
