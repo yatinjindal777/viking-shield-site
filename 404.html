@@ -2,96 +2,54 @@
 <html lang="en-CA">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Page not found | Viking Shield Security</title>
-<meta name="description" content="This page could not be found.">
-<meta name="theme-color" content="#05070c">
+<meta name="description" content="Page not found.">
+<meta name="theme-color" content="#04060c">
 <meta property="og:title" content="Page not found | Viking Shield Security">
-<meta property="og:description" content="This page could not be found.">
+<meta property="og:description" content="Page not found.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/img/og.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="preload" href="assets/fonts/saira-condensed-800-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <script src="assets/js/site.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="wrap site-header__inner">
-    <a class="brand" href="index.html" aria-label="Viking Shield Security, home">
-      <img src="assets/img/crest.webp" width="192" height="176" alt="">
-      <span class="brand__name"><b class="chrome">Viking Shield</b><span>Security</span></span>
-    </a>
-    <nav class="nav" id="site-nav" aria-label="Main">
-      <ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="industries.html">Industries</a></li><li><a href="why-viking.html">Why Viking</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul>
-      <a class="btn btn--primary nav__book" href="contact.html#book">Book immediate service</a>
-    </nav>
-    <a class="btn btn--primary header-cta" href="contact.html#book">Book service</a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+<header class="header">
+  <div class="wrap header__bar">
+    <a class="brand" href="index.html" aria-label="Viking Shield Security, home"><img src="assets/img/crest.webp" width="192" height="176" alt=""><span>Viking Shield<small>SECURITY</small></span></a>
+    <nav class="nav" aria-label="Main"><a href="index.html">Home</a><a href="services.html">Services</a><a href="industries.html">Industries</a><a href="why-viking.html">Why Viking</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></nav>
+    <a class="btn btn--primary btn--desk" href="contact.html#book">Book a guard <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </header>
+<div class="mobile-menu" id="mobile-menu"><a class="m-link" href="index.html"><small>01</small>Home</a><a class="m-link" href="services.html"><small>02</small>Services</a><a class="m-link" href="industries.html"><small>03</small>Industries</a><a class="m-link" href="why-viking.html"><small>04</small>Why Viking</a><a class="m-link" href="careers.html"><small>05</small>Careers</a><a class="m-link" href="contact.html"><small>06</small>Contact</a><a class="btn btn--primary" href="contact.html#book">Book immediate service <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 <main id="main">
-
-<section class="notice">
-  <div class="wrap">
-    <div class="feed vf"><div class="cam" data-scene="nosignal"><canvas aria-hidden="true"></canvas></div>
-      <div class="feed__osd">
-        <div class="feed__osd-row osd"><span>CAM 404</span><span class="rec"><span class="dot dot--rec"></span>No signal</span></div>
-        <div>
-          <h1 class="chrome">No signal on this page.</h1>
-          <p>The page you're looking for has moved or doesn't exist.</p>
-          <div class="actions"><a class="btn btn--primary" href="index.html">Back to home</a><a class="btn btn--ghost" href="contact.html#book">Book service</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="notice"><video src="assets/video/site.mp4" autoplay muted loop playsinline preload="auto" poster="assets/img/site.webp" aria-hidden="true" class=""></video><div class="wrap">
+<div class="big-code" aria-hidden="true">404</div>
+<h1 class="h-lg" data-split="silver">No signal on this page.</h1>
+<p class="lede" data-reveal>The page you're looking for has moved or doesn't exist.</p>
+<div class="actions" data-reveal><a class="btn btn--primary" href="index.html">Back to home <svg class="icon i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--ghost" href="contact.html#book">Book service</a></div>
+</div></section>
 </main>
-<footer class="site-footer">
+<footer class="footer">
   <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="assets/img/logo-full.webp" width="640" height="750" alt="Viking Shield Security" loading="lazy" decoding="async">
-        <p>Trained guards, written SOPs and a dedicated account manager for every site. Based in Toronto, working across Ontario.</p>
-      </div>
-      <div>
-        <h2>Services</h2>
-        <ul>
-          <li><a href="services.html#concierge">Concierge security</a></li>
-          <li><a href="services.html#patrol">Mobile patrol</a></li>
-          <li><a href="services.html#site">Site security</a></li>
-          <li><a href="services.html#retail">Retail security</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Company</h2>
-        <ul>
-          <li><a href="industries.html">Industries</a></li>
-          <li><a href="why-viking.html">Why Viking</a></li>
-          <li><a href="careers.html">Careers</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Reach dispatch</h2>
-        <ul>
-          <li><a href="tel:+14160000000">(416) 000-0000</a></li>
-          <li><a href="https://wa.me/14160000000" rel="noopener" target="_blank">WhatsApp</a></li>
-          <li><a href="mailto:info@example.com">info@example.com</a></li>
-          <li>Toronto, Ontario</li>
-        </ul>
-      </div>
+    <div class="footer__grid">
+      <div class="footer__brand"><img src="assets/img/logo-full.webp" width="640" height="750" alt="Viking Shield Security" loading="lazy"><p>Trained guards, written SOPs and a dedicated account manager for every site. Based in Toronto, working across Ontario.</p></div>
+      <div><h2>Services</h2><ul><li><a href="services.html#concierge">Concierge security</a></li><li><a href="services.html#patrol">Mobile patrol</a></li><li><a href="services.html#site">Site security</a></li><li><a href="services.html#retail">Retail security</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="industries.html">Industries</a></li><li><a href="why-viking.html">Why Viking</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h2>Reach dispatch</h2><ul><li><a href="tel:+14160000000">(416) 000-0000</a></li><li><a href="https://wa.me/14160000000" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:info@example.com">info@example.com</a></li><li><a href="contact.html">Toronto, Ontario</a></li></ul></div>
     </div>
-    <div class="footer-base">
-      <span>&copy; <span data-year>2026</span> Viking Shield Security. All rights reserved.</span>
-      <span class="footer-motto"><span class="dot"></span> Always proactive</span>
-    </div>
+    <div class="footer__word" aria-hidden="true">VIKING SHIELD</div>
+    <div class="footer__base"><span>&copy; <span data-year>2026</span> Viking Shield Security. All rights reserved.</span><span class="live"><span class="dot"></span>Always proactive · <span data-clock></span></span></div>
   </div>
 </footer>
-<script>document.addEventListener("submit",function(e){var f=e.target;if(f.matches("form[data-netlify]")&&f.checkValidity()){e.preventDefault();location.href="thanks.html";}},true);</script>
 </body>
 </html>
