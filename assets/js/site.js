@@ -29,7 +29,40 @@
     const set = open => { document.body.classList.toggle('menu-open', open); mb.setAttribute('aria-expanded', open); mb.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); };
     mb.addEventListener('click', () => set(!document.body.classList.contains('menu-open')));
     addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
-    $$('.mobile-menu a').forEach((a, i) => { a.style.transitionDelay = 80 + i * 55 + 'ms'; a.addEventListener('click', () => set(false)); });
+    $$('.mobile-menu .m-link, .mobile-menu > .btn').forEach((a, i) => a.style.transitionDelay = 80 + i * 50 + 'ms');
+    $$('.mobile-menu a').forEach(a => a.addEventListener('click', () => set(false)));
+  }
+
+  /* services dropdown (desktop) */
+  $$('.dd').forEach(dd => {
+    const btn = $('.dd__btn', dd); let tm;
+    const open = v => { dd.classList.toggle('open', v); btn.setAttribute('aria-expanded', v); };
+    btn.addEventListener('click', e => { e.stopPropagation(); open(!dd.classList.contains('open')); });
+    if (fine) { dd.addEventListener('pointerenter', () => { clearTimeout(tm); open(true); }); dd.addEventListener('pointerleave', () => { tm = setTimeout(() => open(false), 180); }); }
+    document.addEventListener('click', e => { if (!dd.contains(e.target)) open(false); });
+    dd.addEventListener('keydown', e => { if (e.key === 'Escape') { open(false); btn.focus(); } });
+    dd.addEventListener('focusout', e => { if (!dd.contains(e.relatedTarget)) open(false); });
+  });
+  /* services accordion (mobile menu) */
+  $$('.m-acc').forEach(acc => { const b = $('.m-acc__btn', acc); b.addEventListener('click', () => { const v = !acc.classList.contains('open'); acc.classList.toggle('open', v); b.setAttribute('aria-expanded', v); }); });
+
+  /* locations hub filter */
+  const lq = $('#loc-q');
+  if (lq) {
+    const out = $('#loc-result'), idle = out.innerHTML;
+    const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    lq.addEventListener('input', () => {
+      const v = norm(lq.value); let pages = 0, towns = 0, first = null;
+      $$('[data-region]').forEach(r => {
+        let any = false;
+        $$('[data-name]', r).forEach(el => { const hit = !v || norm(el.dataset.name).includes(v); el.classList.toggle('dim', !hit); el.classList.toggle('hit', !!v && hit && el.classList.contains('pill')); if (hit && v) { any = true; el.classList.contains('loc') ? (pages++, first = first || el) : towns++; } });
+        r.hidden = !!v && !any;
+      });
+      out.className = 'result';
+      if (!v) { out.innerHTML = idle; $$('[data-region]').forEach(r => r.hidden = false); return; }
+      if (pages || towns) { out.classList.add('yes'); out.innerHTML = `<span class="dot"></span><span>${pages ? `${pages} city page${pages > 1 ? 's' : ''}` : ''}${pages && towns ? ' and ' : ''}${towns ? `${towns} more communit${towns > 1 ? 'ies' : 'y'}` : ''} covered.${first ? ` <a href="${first.getAttribute('href')}">Open ${first.dataset.name}</a>` : ''}</span>`; }
+      else { out.classList.add('no'); out.innerHTML = `<span>Not on our list yet, but we cover new sites across Ontario. <a href="contact.html#book">Tell us about yours</a></span>`; }
+    });
   }
 
   /* split headings into words */
@@ -191,7 +224,7 @@
   /* coverage search */
   const q = $('#city-q');
   if (q) {
-    const cloud = $('.cloud'), out = $('.result'), items = $$('span', cloud);
+    const cloud = $('.cloud'), out = $('.result'), items = [...cloud.children];
     const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
     const idle = out.innerHTML;
     q.addEventListener('input', () => {
@@ -202,7 +235,7 @@
       out.className = 'result';
       if (v.length < 2) { out.innerHTML = idle; return; }
       const exact = items.find(s => norm(s.textContent) === v);
-      if (exact || hits.length === 1) { out.classList.add('yes'); out.innerHTML = `<span class="dot"></span><span>Yes. Viking Shield has covered sites in <b>${(exact || hits[0]).textContent}</b>. <a href="contact.html#book">Book a guard</a></span>`; }
+      if (exact || hits.length === 1) { out.classList.add('yes'); const h = exact || hits[0], href = h.getAttribute('href'); out.innerHTML = `<span class="dot"></span><span>Yes. Viking Shield has covered sites in <b>${h.textContent}</b>. ${href ? `<a href="${href}">See ${h.textContent} security</a>` : '<a href="contact.html#book">Book a guard</a>'}</span>`; }
       else if (hits.length) { out.classList.add('yes'); out.innerHTML = `<span class="dot"></span><span>${hits.length} matching communities on our coverage list. Keep typing to narrow it down.</span>`; }
       else { out.classList.add('no'); out.innerHTML = `<span>Not on our list yet, but we cover new sites across Ontario. <a href="contact.html#book">Tell us about yours</a></span>`; }
       (exact || hits[0])?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });

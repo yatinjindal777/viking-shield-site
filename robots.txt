@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /thanks.html
+
+Sitemap: https://yatinjindal777.github.io/viking-shield-site/sitemap.xml
