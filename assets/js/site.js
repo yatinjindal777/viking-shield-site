@@ -21,6 +21,7 @@
     scrollLinked();
     ticking = false;
   };
+  addEventListener('resize', () => onScroll());
   addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
 
   /* mobile menu */
@@ -215,6 +216,7 @@
       let cur = subnav[0];
       subnav.forEach(a => { const s = $(a.getAttribute('href')); if (s && s.getBoundingClientRect().top < innerHeight * .4) cur = a; });
       subnav.forEach(a => a.classList.toggle('on', a === cur));
+      const ind = $('.subnav__ind'); if (ind) { ind.style.setProperty('--ix', cur.offsetLeft + 'px'); ind.style.setProperty('--iw', cur.offsetWidth + 'px'); }
     }
   }
 
